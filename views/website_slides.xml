@@ -1,0 +1,68 @@
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+
+        <template id="slide_fullscreen_sidebar_category_inherited"
+            inherit_id="website_slides.slide_fullscreen_sidebar_category">
+            <xpath expr="//li[@t-att-data-id='slide.id']" position="attributes">
+                <attribute name="t-attf-data-attachment-id">#{slide.slide_attachment.id}</attribute>
+            </xpath>
+        </template>
+
+        <!-- <template id="slide_content_detailed_inherited"
+        inherit_id="website_slides.slide_content_detailed">
+            <xpath expr="//div[hasclass('o_wslides_lesson_content_type')]/div[@t-if=&quot;slide.slide_category
+        == 'video'&quot;]" position="replace">
+                <div t-if="slide.slide_category == 'video'" class="embed-responsive embed-responsive-16by9
+        embed-responsive-item mb8">
+                    <t t-if="slide.youtube_id">
+                        <t t-out="slide.embed_code" />
+                    </t>
+                    <t t-else=" ">
+                        <div class="embed-responsive embed-responsive-16by9 embed-responsive-item mb8 video-file">
+                            <video controls="true" preload="metadata">
+                                <source t-attf-src="/get_video/#{slide.slide_attachment.id}" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+        </template> -->
+
+        <!-- <template id="slide_icon_inherit" inherit_id="website_slides.slide_icon">
+            <xpath expr="." position="inside">
+                <i t-if="slide.slide_type == 'video'"
+                    t-att-class="'fa fa-file-video-o %s' % icon_class"></i>
+            </xpath>
+        </template> -->
+
+        <template id="slide_content_detailed_inherit"
+            inherit_id="website_slides.slide_content_detailed">
+            <xpath expr="//div[hasclass('o_wslides_lesson_content_type')]/div[2]" position="replace">
+                <div t-if="slide.slide_category == 'video'"
+                    class="ratio ratio-16x9 embed-responsive-item mb8">
+                    <t t-if="slide.youtube_id">
+                        <t t-out="slide.embed_code" />
+                    </t>
+                    <t t-elif="slide.google_cloud_id">
+                        <t t-out="slide.embed_code" />
+                    </t>
+                    <t t-else=" ">
+                        <div class="player ratio ratio-16x9 embed-responsive-item h-100">
+                            <video controls="true" preload="metadata" controlsList="nodownload"
+                                allowFullScreen="true" autoplay="1" allow="autoplay"
+                                class="elearning_uploaded_video" t-att-data-id='slide.id'>
+                                <source t-attf-src="/get_video/#{slide.slide_attachment.id}"
+                                    type="video/mp4" />
+                            </video>
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

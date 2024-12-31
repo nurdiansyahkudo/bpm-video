@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+	<data>
+		<record id="view_inherit_slide_slide_form" model="ir.ui.view">
+			<field name="name">slide.slide.form.view.inherit</field>
+			<field name="model">slide.slide</field>
+			<field name="inherit_id" ref="website_slides.view_slide_slide_form"/>
+			<field name="arch" type="xml">
+				<field name='video_url' position="before">
+					<field name="document_type" invisible="slide_category != 'video'"/>
+					<field name="slide_attachment" domain="[('mimetype', 'ilike', 'video/')]" invisible="1"/>
+					<field name="fname" invisible='1'/>
+					<field widget="binary" height="64" name="attachment" filename='fname' required="document_type == 'binary'" invisible="document_type == 'url'"/>
+				</field>
+				<xpath expr="//field[@name='video_url']" position="attributes">
+					<attribute name="required">(document_type == 'url') and (slide_category == 'video')</attribute>
+					<attribute name="invisible">(slide_category != 'video') or (document_type != 'url')</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

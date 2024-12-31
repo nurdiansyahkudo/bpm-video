@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing
+details. -->
+
+<templates id="template" xml:space="preserve">
+    <!-- <t t-inherit="website_slides.website.slides.fullscreen.video.youtube" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('player')]" position="replace">
+            <t t-if="widget.attachmentId">
+                <div class="player ratio ratio-16x9 embed-responsive-item h-100">
+                    <video controls="true" preload="metadata" allowFullScreen="true" autoplay="1" allow="autoplay">
+                        <source t-attf-src="/get_video/#{widget.attachmentId}" type="video/mp4" />
+                       
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </t>
+            <t t-else=" ">
+                <div class="player ratio ratio-16x9 embed-responsive-item h-100">
+                    <t t-out="widget.slide"/>
+                    <iframe t-att-attachment_id="widget.slide" t-att-id="'youtube-player' + widget.id" t-att-src="widget.slide.embedUrl" allowFullScreen="true" frameborder="0" enablejsapi="1" autoplay="1" allow="autoplay"></iframe>
+                </div>
+            </t>
+        </xpath>
+    </t> -->
+
+    <t t-name="website.slides.fullscreen.video.google_cloud">
+        <div class="player ratio ratio-16x9 embed-responsive-item h-100">
+            <video t-att-attachment_id="widget.slide" controlsList="nodownload" t-att-id="'google_cloud-player' + widget.id" controls="true" preload="metadata" allowFullScreen="true" autoplay="1" allow="autoplay" class="elearning_uploaded_video">
+                <source t-att-src="widget.embedCode" type="video/mp4"/>
+            </video>
+            <!-- <iframe t-att-attachment_id="widget.slide" t-att-id="'google_cloud-player' + widget.id" t-att-src="widget.embedCode" allowFullScreen="true" frameborder="0" enablejsapi="1" autoplay="1" allow="autoplay"></iframe> -->
+        </div>
+    </t>
+
+    <t t-name="website.slides.fullscreen.video.attachment">
+        <t t-if="widget.attachmentId">
+            <div class="player ratio ratio-16x9 embed-responsive-item h-100" t-att-slide="widget.slide">
+                <video controls="true" preload="metadata" controlsList="nodownload" allowFullScreen="true" autoplay="1" allow="autoplay" class="elearning_uploaded_video">
+                    <source t-attf-src="/get_video/#{widget.attachmentId}" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </t>
+    </t>
+
+
+</templates>
